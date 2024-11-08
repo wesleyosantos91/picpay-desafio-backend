@@ -32,6 +32,7 @@
 ##  Pré -requisitos
 
 - [ `Java 21+` ](https://www.oracle.com/java/technologies/downloads/#java21)
+- [ `Apache Maven`](https://maven.apache.org/download.cgi)
 - [ `Docker` ](https://www.docker.com/)
 - [ `Docker-Compose` ](https://docs.docker.com/compose/install/)
 
