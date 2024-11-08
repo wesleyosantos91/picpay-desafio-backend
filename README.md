@@ -32,7 +32,7 @@
 
 ##  Pré -requisitos
 
-- [ `Java 11+` ](https://www.oracle.com/java/technologies/downloads/#java21)
+- [ `Java 21+` ](https://www.oracle.com/java/technologies/downloads/#java21)
 - [ `Docker` ](https://www.docker.com/)
 - [ `Docker-Compose` ](https://docs.docker.com/compose/install/)
 
