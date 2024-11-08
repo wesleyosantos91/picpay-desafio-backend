@@ -2,17 +2,24 @@
     <img src="asserts/logo-wos.jpg" alt="logo" width="200" height="auto" />
 </div>
 
-
-<h3 align="center">
-  Desafio Backend do PicPay
-</h3>
+</br>
 
 <div align="center">
-
 
 ![](https://img.shields.io/badge/Autor-Wesley%20Oliveira%20Santos-brightgreen)
 ![](https://img.shields.io/badge/Language-java-brightgreen)
 ![](https://img.shields.io/badge/Framework-springboot-brightgreen)
+
+</div>
+
+
+
+<div align="center">
+
+  ## Desafio Backend do PicPay
+  <img src="asserts/picpay-logo.jpg" alt="logo" width="200" height="auto" />
+
+  Confira o enunciado completo, [clicando aqui](./problem.md).
 
 </div>
 
@@ -22,9 +29,6 @@
   <img src="asserts/em-construcao.jpg" alt="logo" width="200" height="auto" />
 
 </div>
-
-## Desafio
-- Confira o enunciado completo, [clicando aqui](./problem.md).
 
 ##  Pré -requisitos
 
