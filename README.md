@@ -35,10 +35,10 @@
 - [ `Docker` ](https://www.docker.com/)
 - [ `Docker-Compose` ](https://docs.docker.com/compose/install/)
 
-## Stacks
+## Frameworks
 
-* Java 21
 * Spring Boot
+* Quarkus
 
 </br>
 <a href="https://www.linkedin.com/in/wesleyosantos91/" target="_blank">
