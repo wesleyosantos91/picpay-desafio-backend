@@ -1,5 +1,5 @@
 <div align="center" width="100%">
-    <img src="../../asserts/logo-wos.jpg" alt="logo" width="200" height="auto" />
+    <img src="../asserts/logo-wos.jpg" alt="logo" width="200" height="auto" />
 </div>
 
 <br>
@@ -12,12 +12,10 @@
 
 </div>
 
-
-
 <div align="center">
 
   ## Desafio Backend do PicPay
-  <img src="../../asserts/picpay-logo.jpg" alt="logo" width="200" height="auto" />
+  <img src="../asserts/picpay-logo.jpg" alt="logo" width="200" height="auto" />
 
   Confira o enunciado completo, [clicando aqui](./problem.md).
 
@@ -26,7 +24,7 @@
 <div align="center">
 
   ## Arquitetura
-  <img src="../../asserts/em-construcao.jpg" alt="logo" width="200" height="auto" />
+  <img src="../asserts/em-construcao.jpg" alt="logo" width="200" height="auto" />
 
 </div>
 
@@ -44,10 +42,15 @@
 - **Flyway**
 - **Mysql**
 
+## Aplicações
+| Nome                | Descrição |
+|---------------------|-------|
+| app-transaction-api | Esse microserviço tem a reposnsabilidade de tratar todo core do contexto de transferencia. |
+
 ## Portas
-| Aplicação         | Porta |
-|-------------------|-------|
-|app-transaction-api| 8080  |
+| Aplicação          | Porta |
+|--------------------|-------|
+| app-transaction-api| 8080  |
 
 ## Setup
 
