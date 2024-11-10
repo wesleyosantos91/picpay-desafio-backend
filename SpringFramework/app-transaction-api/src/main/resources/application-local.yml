@@ -18,4 +18,8 @@ spring:
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
     locations: classpath:db/migration,classpath:db/testdata
-
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0

@@ -26,6 +26,10 @@
   ## Arquitetura
   <img src="../asserts/em-construcao.jpg" alt="logo" width="200" height="auto" />
 
+  ### Modelo de banco de dados
+  <img src="../asserts/db-transactions.png" alt="logo" width="200" height="auto" />
+
+
 </div>
 
 ##  Pré - requisitos
