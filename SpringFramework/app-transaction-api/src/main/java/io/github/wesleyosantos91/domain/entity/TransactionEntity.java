@@ -1,12 +1,19 @@
 package io.github.wesleyosantos91.domain.entity;
 
 import io.github.wesleyosantos91.domain.entity.enums.TransactionStatus;
-import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "tb_transaction")
@@ -98,14 +105,14 @@ public class TransactionEntity {
 
     @Override
     public String toString() {
-        return "TransactionEntity{" +
-                "id=" + id +
-                ", senderWallet=" + senderWallet +
-                ", receiverWallet=" + receiverWallet +
-                ", amount=" + amount +
-                ", status='" + status + '\'' +
-                ", creationDate=" + creationDate +
-                ", completionDate=" + completionDate +
-                '}';
+        return "TransactionEntity{"
+                + "id=" + id
+                + ", senderWallet=" + senderWallet
+                + ", receiverWallet=" + receiverWallet
+                + ", amount=" + amount
+                + ", status='" + status + '\''
+                + ", creationDate=" + creationDate
+                + ", completionDate=" + completionDate
+                + '}';
     }
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum DeliveryMethod {
+
     EMAIL("Email"),
     SMS("SMS");
 
@@ -26,7 +27,7 @@ public enum DeliveryMethod {
 
     public static DeliveryMethod fromValue(String value) {
 
-        DeliveryMethod deliveryMethod = VALUE_MAP.get(value.toLowerCase());
+        final DeliveryMethod deliveryMethod = VALUE_MAP.get(value.toLowerCase());
 
         if (deliveryMethod == null) {
             throw new IllegalArgumentException("Unknown delivery method: " + value);

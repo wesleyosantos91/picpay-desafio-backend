@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum UserType {
+
     CUSTOMER("Customer"),
     MERCHANT("Merchant");
 
@@ -26,7 +27,7 @@ public enum UserType {
     }
 
     public static UserType fromValue(String value) {
-        UserType status = VALUE_MAP.get(value.toLowerCase());
+        final UserType status = VALUE_MAP.get(value.toLowerCase());
         if (status == null) {
             throw new IllegalArgumentException("Unknown user type: " + value);
         }

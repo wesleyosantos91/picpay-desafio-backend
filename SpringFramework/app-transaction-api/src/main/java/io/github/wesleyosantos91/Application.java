@@ -8,18 +8,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-	private final UserRepository repository;
+    private final UserRepository repository;
 
     public Application(UserRepository repository) {
         this.repository = repository;
     }
 
     public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+        SpringApplication.run(Application.class, args);
+    }
 
-	@Override
-	public void run(String... args) throws Exception {
-		repository.findAll().forEach(System.out::println);
-	}
+    @Override
+    public void run(String... args) throws Exception {
+        repository.findAll().forEach(System.out::println);
+    }
 }

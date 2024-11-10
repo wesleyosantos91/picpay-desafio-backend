@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum NotificationStatus {
+
     PENDING("Pending"),
     SENT("Sent"),
     FAILED("Failed");
@@ -27,7 +28,7 @@ public enum NotificationStatus {
     }
 
     public static NotificationStatus fromValue(String value) {
-        NotificationStatus status = VALUE_MAP.get(value.toLowerCase());
+        final NotificationStatus status = VALUE_MAP.get(value.toLowerCase());
         if (status == null) {
             throw new IllegalArgumentException("Unknown notification status: " + value);
         }

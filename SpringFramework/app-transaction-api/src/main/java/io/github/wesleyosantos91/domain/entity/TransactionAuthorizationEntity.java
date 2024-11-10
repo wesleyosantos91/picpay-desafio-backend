@@ -1,11 +1,18 @@
 package io.github.wesleyosantos91.domain.entity;
 
 import io.github.wesleyosantos91.domain.entity.enums.TransactionAuthorizationStatus;
-import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.UUID;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "tb_transaction_authorization")
@@ -61,11 +68,11 @@ public class TransactionAuthorizationEntity {
 
     @Override
     public String toString() {
-        return "TransactionAuthorizationEntity{" +
-                "id=" + id +
-                ", transaction=" + transaction +
-                ", status='" + status + '\'' +
-                ", authorizationDate=" + authorizationDate +
-                '}';
+        return "TransactionAuthorizationEntity{"
+                + "id=" + id
+                + ", transaction=" + transaction
+                + ", status='" + status + '\''
+                + ", authorizationDate=" + authorizationDate
+                + '}';
     }
 }

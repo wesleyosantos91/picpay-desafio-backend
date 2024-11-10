@@ -1,10 +1,14 @@
 package io.github.wesleyosantos91.domain.entity;
 
 import io.github.wesleyosantos91.domain.entity.enums.UserType;
-import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.UUID;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "tb_user")
@@ -81,13 +85,13 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
-                "id='" + id + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", cpfCnpj='" + cpfCnpj + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", userType='" + userType + '\'' +
-                '}';
+        return "UserEntity{"
+                + "id='" + id + '\''
+                + ", fullName='" + fullName + '\''
+                + ", cpfCnpj='" + cpfCnpj + '\''
+                + ", email='" + email + '\''
+                + ", password='" + password + '\''
+                + ", userType='" + userType + '\''
+                + '}';
     }
 }

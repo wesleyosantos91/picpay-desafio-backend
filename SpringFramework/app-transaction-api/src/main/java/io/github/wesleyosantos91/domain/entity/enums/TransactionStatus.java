@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum TransactionStatus {
+
     PENDING("Pending"),
     COMPLETED("Completed"),
     CANCELED("Canceled");
@@ -27,7 +28,7 @@ public enum TransactionStatus {
     }
 
     public static TransactionStatus fromValue(String value) {
-        TransactionStatus status = VALUE_MAP.get(value.toLowerCase());
+        final TransactionStatus status = VALUE_MAP.get(value.toLowerCase());
         if (status == null) {
             throw new IllegalArgumentException("Unknown transaction status: " + value);
         }

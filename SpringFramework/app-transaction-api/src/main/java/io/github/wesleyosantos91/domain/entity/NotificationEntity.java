@@ -2,11 +2,18 @@ package io.github.wesleyosantos91.domain.entity;
 
 import io.github.wesleyosantos91.domain.entity.enums.DeliveryMethod;
 import io.github.wesleyosantos91.domain.entity.enums.NotificationStatus;
-import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.UUID;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "tb_notification")
@@ -86,13 +93,13 @@ public class NotificationEntity {
 
     @Override
     public String toString() {
-        return "NotificationEntity{" +
-                "id=" + id +
-                ", receiverUser=" + receiverUser +
-                ", transaction=" + transaction +
-                ", deliveryMethod='" + deliveryMethod + '\'' +
-                ", status='" + status + '\'' +
-                ", sentDate=" + sentDate +
-                '}';
+        return "NotificationEntity{"
+                + "id=" + id
+                + ", receiverUser=" + receiverUser
+                + ", transaction=" + transaction
+                + ", deliveryMethod='" + deliveryMethod + '\''
+                + ", status='" + status + '\''
+                + ", sentDate=" + sentDate
+                + '}';
     }
 }

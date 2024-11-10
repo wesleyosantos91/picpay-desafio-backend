@@ -1,9 +1,10 @@
 package io.github.wesleyosantos91.domain.entity.enums;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public enum TransactionAuthorizationStatus {
+
     AUTHORIZED("Authorized"),
     DENIED("Denied");
 
@@ -26,7 +27,7 @@ public enum TransactionAuthorizationStatus {
     }
 
     public static TransactionAuthorizationStatus fromValue(String value) {
-        TransactionAuthorizationStatus status = VALUE_MAP.get(value.toLowerCase());
+        final TransactionAuthorizationStatus status = VALUE_MAP.get(value.toLowerCase());
         if (status == null) {
             throw new IllegalArgumentException("Unknown transaction authorization status: " + value);
         }

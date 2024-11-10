@@ -1,11 +1,16 @@
 package io.github.wesleyosantos91.domain.entity;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "tb_wallet")
@@ -62,11 +67,11 @@ public class WalletEntity {
 
     @Override
     public String toString() {
-        return "WalletEntity{" +
-                "id=" + id +
-                ", user=" + user +
-                ", balance=" + balance +
-                ", creationDate=" + creationDate +
-                '}';
+        return "WalletEntity{"
+                + "id=" + id
+                + ", user=" + user
+                + ", balance=" + balance
+                + ", creationDate=" + creationDate
+                + '}';
     }
 }
