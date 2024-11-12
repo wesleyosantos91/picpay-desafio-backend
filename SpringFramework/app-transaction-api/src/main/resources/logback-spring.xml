@@ -11,8 +11,9 @@
                         <omitEmptyFields>true</omitEmptyFields>
                         <pattern>
                             {
-                            "x-correlationID": "%X{traceId:-}",
+                            "traceId": "%X{traceId:-}",
                             "x-flowID": "%X{spanId:-}",
+                            "x-correlationID": "%X{x-correlationID:-}",
                             "parent": "%X{parentId:-}",
                             "exportable": "%X{sampled:-}",
                             "pid": "${PID:-}"

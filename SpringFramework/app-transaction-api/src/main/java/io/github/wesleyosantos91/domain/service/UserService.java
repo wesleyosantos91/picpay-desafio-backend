@@ -9,8 +9,6 @@ import io.github.wesleyosantos91.domain.entity.UserEntity;
 import io.github.wesleyosantos91.domain.exception.ResourceNotFoundException;
 import io.github.wesleyosantos91.domain.repository.UserRepository;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
     private final UserRepository respository;
     private final UserMapper mapper;
 
@@ -34,11 +31,13 @@ public class UserService {
         return respository.save(mapper.toEntity(userRequest));
     }
 
+    @Transactional(readOnly = true)
     public UserEntity findById(UUID id) throws ResourceNotFoundException {
         return respository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(format("Not found regitstry with code {0}", id)));
     }
 
+    @Transactional(readOnly = true)
     public Page<UserEntity> search(UserQueryRequest queryRequest, Pageable pageable) {
 
         final var userEntityExample = Example.of(mapper.toEntity(queryRequest));

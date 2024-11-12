@@ -23,3 +23,20 @@ management:
     enabled: true
     sampling:
       probability: 1.0
+    baggage:
+      correlation:
+        enabled: true
+        fields: [x-correlationID]
+      remote-fields: [x-correlationID]
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  observations:
+    key-values:
+      my_custom_tag: ${spring.application.name}
+
+
