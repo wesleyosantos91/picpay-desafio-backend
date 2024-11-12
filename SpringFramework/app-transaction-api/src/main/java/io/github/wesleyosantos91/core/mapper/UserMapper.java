@@ -13,17 +13,19 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
+import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring",
-        nullValuePropertyMappingStrategy = IGNORE,
+@Mapper(nullValuePropertyMappingStrategy = IGNORE,
         nullValueCheckStrategy = ALWAYS,
         unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 @Component
 public interface UserMapper {
+
+    UserMapper MAPPER = Mappers.getMapper(UserMapper.class);
 
     UserEntity toEntity(UserQueryRequest request);
 

@@ -14,4 +14,8 @@ public class UserRequestTemplateLoader {
     public static UserRequest createUserMerchantSucess() {
         return new UserRequest("Epsilon Systems", "99900011122333", "contato@epsilon-systems.com", "password345", MERCHANT);
     }
+
+    public static UserRequest createUserCustomerInvalid() {
+        return new UserRequest("L", "84786287032", "luisgustavocarvalhoemail.com.br", "s3K1Y9CgCo", CUSTOMER);
+    }
 }

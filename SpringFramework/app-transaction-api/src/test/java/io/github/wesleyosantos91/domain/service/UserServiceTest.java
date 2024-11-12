@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -140,26 +141,38 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("[domain] - should return a page is not empty")
-    void shouldReturnAListIsNotEmpty() {
-        final List<UserEntity> users = List.of(UserEntityTemplateLoader.createUserEntityToSaved());
-
-        final var userEntity = new UserEntity();
-        when(mapper.toEntity(any(UserQueryRequest.class))).thenReturn(userEntity);
-
+    @DisplayName("[domain] - should return an empty page")
+    void shouldReturnAnEmptyPage() {
+        final UserQueryRequest queryRequest = UserQueryRequestTemplateLoader.createUserQueryRequestEmpty();
         final PageRequest pageRequest = PageRequest.of(1, 10);
-        when(repository.findAll(Example.of(userEntity), pageRequest)).thenReturn(new PageImpl<>(users, pageRequest, users.size()));
-        final Page<UserEntity> result = service.search(UserQueryRequestTemplateLoader.createUserQueryRequestEmpty(), pageRequest);
 
-        assertThat(result.getContent()).isNotEmpty();
-        assertThat(result.getTotalElements()).isPositive();
+        when(mapper.toEntity(any(UserQueryRequest.class))).thenReturn(new UserEntity());
+        when(repository.findAll(any(Example.class), eq(pageRequest))).thenReturn(Page.empty(pageRequest));
+
+        final Page<UserEntity> result = service.search(queryRequest, pageRequest);
+
+        assertThat(result.getContent()).isEmpty();
+        assertThat(result.getTotalElements()).isZero();
     }
 
-
     @Test
-    @DisplayName("[domain] - should update a user and return email change")
-    void shouldUpdateAUserAndReturnEmailChange() {
-        //TODO
+    @DisplayName("[domain] - should return a page with multiple users")
+    void shouldReturnAPageWithMultipleUsers() {
+        final List<UserEntity> users = List.of(
+                UserEntityTemplateLoader.createUserEntityToSaved(),
+                UserEntityTemplateLoader.createUserEntityToSaved()
+        );
+
+        final UserQueryRequest queryRequest = UserQueryRequestTemplateLoader.createUserQueryRequestEmpty();
+        final PageRequest pageRequest = PageRequest.of(1, 10);
+
+        when(mapper.toEntity(any(UserQueryRequest.class))).thenReturn(new UserEntity());
+        when(repository.findAll(any(Example.class), eq(pageRequest))).thenReturn(new PageImpl<>(users, pageRequest, users.size()));
+
+        final Page<UserEntity> result = service.search(queryRequest, pageRequest);
+
+        assertThat(result.getContent()).hasSize(2);
+        assertThat(result.getTotalElements()).isPositive();
     }
 
     @ParameterizedTest

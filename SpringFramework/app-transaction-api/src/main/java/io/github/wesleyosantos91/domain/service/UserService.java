@@ -1,10 +1,10 @@
 package io.github.wesleyosantos91.domain.service;
 
+import static io.github.wesleyosantos91.core.mapper.UserMapper.MAPPER;
 import static java.text.MessageFormat.format;
 
 import io.github.wesleyosantos91.api.v1.request.UserQueryRequest;
 import io.github.wesleyosantos91.api.v1.request.UserRequest;
-import io.github.wesleyosantos91.core.mapper.UserMapper;
 import io.github.wesleyosantos91.domain.entity.UserEntity;
 import io.github.wesleyosantos91.domain.exception.ResourceNotFoundException;
 import io.github.wesleyosantos91.domain.repository.UserRepository;
@@ -19,16 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository respository;
-    private final UserMapper mapper;
 
-    public UserService(UserRepository respository, UserMapper mapper) {
+    public UserService(UserRepository respository) {
         this.respository = respository;
-        this.mapper = mapper;
     }
 
     @Transactional
     public UserEntity create(UserRequest userRequest) {
-        return respository.save(mapper.toEntity(userRequest));
+        return respository.save(MAPPER.toEntity(userRequest));
     }
 
     @Transactional(readOnly = true)
@@ -40,13 +38,13 @@ public class UserService {
     @Transactional(readOnly = true)
     public Page<UserEntity> search(UserQueryRequest queryRequest, Pageable pageable) {
 
-        final var userEntityExample = Example.of(mapper.toEntity(queryRequest));
+        final var userEntityExample = Example.of(MAPPER.toEntity(queryRequest));
         return respository.findAll(userEntityExample, pageable);
     }
 
     @Transactional
     public UserEntity update(UUID id, UserRequest request) throws ResourceNotFoundException {
-        final var user = mapper.toEntity(request, findById(id));
+        final var user = MAPPER.toEntity(request, findById(id));
         return respository.save(user);
     }
 

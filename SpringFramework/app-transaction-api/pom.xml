@@ -208,6 +208,20 @@
 					<targetTests>
 						<param>io.github.wesleyosantos91.*</param>
 					</targetTests>
+					<excludedClasses>
+						<param>io.github.wesleyosantos91.*Application</param>
+						<param>io.github.wesleyosantos91.domain.entity.*</param>
+						<param>io.github.wesleyosantos91.domain.entity.enums.*</param>
+						<param>io.github.wesleyosantos91.api.v1.commons.enums.*</param>
+						<param>io.github.wesleyosantos91.api.v1.request.*</param>
+						<param>io.github.wesleyosantos91.api.v1.response.*</param>
+						<param>io.github.wesleyosantos91.core.mapper.*</param>
+						<param>io.github.wesleyosantos91.api.exception.*</param>
+					</excludedClasses>
+					<avoidCallsTo>
+						<param>org.springframework.util.StopWatch</param>
+						<param>org.slf4j.Logger</param>
+					</avoidCallsTo>
 				</configuration>
 			</plugin>
 			<plugin>
