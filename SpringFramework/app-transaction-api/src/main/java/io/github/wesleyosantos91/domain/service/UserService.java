@@ -8,6 +8,8 @@ import io.github.wesleyosantos91.api.v1.request.UserRequest;
 import io.github.wesleyosantos91.domain.entity.UserEntity;
 import io.github.wesleyosantos91.domain.exception.ResourceNotFoundException;
 import io.github.wesleyosantos91.domain.repository.UserRepository;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import java.util.UUID;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -35,6 +37,8 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException(format("Not found regitstry with code {0}", id)));
     }
 
+    @Counted(value = "user.service.search")
+    @Timed(value = "user.service.search")
     @Transactional(readOnly = true)
     public Page<UserEntity> search(UserQueryRequest queryRequest, Pageable pageable) {
 
