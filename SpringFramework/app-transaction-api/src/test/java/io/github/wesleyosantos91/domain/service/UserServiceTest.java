@@ -13,7 +13,7 @@ import io.github.wesleyosantos91.api.v1.commons.enums.UserTypeRequest;
 import io.github.wesleyosantos91.api.v1.request.UserQueryRequest;
 import io.github.wesleyosantos91.api.v1.request.UserRequest;
 import io.github.wesleyosantos91.core.mapper.UserMapper;
-import io.github.wesleyosantos91.domain.UserEntityTemplateLoader;
+import io.github.wesleyosantos91.domain.entity.UserEntityTemplateLoader;
 import io.github.wesleyosantos91.domain.entity.UserEntity;
 import io.github.wesleyosantos91.domain.entity.enums.UserType;
 import io.github.wesleyosantos91.domain.exception.ResourceNotFoundException;

@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.wesleyosantos91.api.v1.commons.enums.UserTypeRequest;
 import io.github.wesleyosantos91.api.v1.request.UserRequest;
-import io.github.wesleyosantos91.domain.UserEntityTemplateLoader;
+import io.github.wesleyosantos91.domain.entity.UserEntityTemplateLoader;
 import io.github.wesleyosantos91.domain.entity.UserEntity;
 import io.github.wesleyosantos91.domain.exception.ResourceNotFoundException;
 import io.github.wesleyosantos91.domain.request.UserQueryRequestTemplateLoader;

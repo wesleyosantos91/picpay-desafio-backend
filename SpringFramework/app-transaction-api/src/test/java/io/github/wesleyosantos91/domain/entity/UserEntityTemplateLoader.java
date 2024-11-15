@@ -1,8 +1,6 @@
-package io.github.wesleyosantos91.domain;
+package io.github.wesleyosantos91.domain.entity;
 
 import static io.github.wesleyosantos91.domain.entity.enums.UserType.CUSTOMER;
-
-import io.github.wesleyosantos91.domain.entity.UserEntity;
 
 public class UserEntityTemplateLoader {
 
