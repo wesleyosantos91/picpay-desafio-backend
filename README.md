@@ -9,6 +9,30 @@
 ![](https://img.shields.io/badge/Autor-Wesley%20Oliveira%20Santos-brightgreen)
 ![](https://img.shields.io/badge/Language-java-brightgreen)
 
+<p>
+  <a href="https://github.com/wesleyosantos91/picpay-desafio-backend/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/wesleyosantos91/picpay-desafio-backend" alt="contributors" />
+  </a>
+  <a href="">
+    <img src="https://img.shields.io/github/last-commit/wesleyosantos91/picpay-desafio-backend" alt="last update" />
+  </a>
+  <a href="https://github.com/wesleyosantos91/picpay-desafio-backend/network/members">
+    <img src="https://img.shields.io/github/forks/wesleyosantos91/picpay-desafio-backend" alt="forks" />
+  </a>
+  <a href="https://github.com/wesleyosantos91/picpay-desafio-backend/stargazers">
+    <img src="https://img.shields.io/github/stars/wesleyosantos91/picpay-desafio-backend" alt="stars" />
+  </a>
+  <a href="https://github.com/wesleyosantos91/picpay-desafio-backend/issues/">
+    <img src="https://img.shields.io/github/issues/wesleyosantos91/picpay-desafio-backend" alt="open issues" />
+  </a>
+  <a href="https://github.com/wesleyosantos91/picpay-desafio-backend/pulls/">
+    <img src="https://img.shields.io/github/issues-pr/wesleyosantos91/picpay-desafio-backend" alt="pull requests" />
+  </a>
+  <a href="https://github.com/wesleyosantos91/picpay-desafio-backend/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/wesleyosantos91/picpay-desafio-backend" alt="license" />
+  </a>
+</p>
+
 </div>
 
 
