@@ -200,7 +200,7 @@ class UserControllerTest {
         final var uuid = UUID.randomUUID();
         final var queryRequest = UserQueryRequestTemplateLoader.createUserQueryRequestEmpty();
         final var pageRequest = PageRequest.of(0, 10);
-        final var pageEntity = new PageImpl<UserEntity>(List.of(), pageRequest, List.of().size());
+        final var pageEntity = new PageImpl<UserEntity>(List.of(), pageRequest, 0);
 
         when(service.search(queryRequest, pageRequest)).thenReturn(pageEntity);
 

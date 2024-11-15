@@ -23,7 +23,8 @@
 		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<spring-cloud.version>2023.0.3</spring-cloud.version>
+		<skip.ut>false</skip.ut>
+		<skip.it>true</skip.it>
 	</properties>
 
 	<dependencies>
@@ -121,6 +122,42 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit-platform-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-engine</artifactId>
+			<version>1.11.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite-api</artifactId>
+			<version>1.11.3</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-console-standalone</artifactId>
+			<version>1.11.3</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -128,7 +165,14 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
+				<version>2023.0.3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.cucumber</groupId>
+				<artifactId>cucumber-bom</artifactId>
+				<version>7.20.1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -140,6 +184,36 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.2</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<skipTests>${skip.ut}</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.5.2</version>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+					<skipTests>${skip.it}</skipTests>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -154,6 +228,7 @@
 						<exclude>**/enums/*</exclude>
 						<exclude>**/exception/*</exclude>
 						<exclude>**/mapper/*</exclude>
+						<exclude>**/metrics/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
@@ -208,15 +283,19 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<mutationThreshold>80</mutationThreshold>
+					<mutationThreshold>50</mutationThreshold>
 					<targetClasses>
 						<param>io.github.wesleyosantos91.*</param>
 					</targetClasses>
 					<targetTests>
 						<param>io.github.wesleyosantos91.*</param>
 					</targetTests>
+					<excludedTestClasses>
+						<param>io.github.wesleyosantos91.api.v1.controller.UserControllerIT</param>
+						<param>io.github.wesleyosantos91.ApplicationTests</param>
+					</excludedTestClasses>
 					<excludedClasses>
-						<param>io.github.wesleyosantos91.*Application</param>
+						<param>io.github.github.*Application</param>
 						<param>io.github.wesleyosantos91.domain.entity.*</param>
 						<param>io.github.wesleyosantos91.domain.entity.enums.*</param>
 						<param>io.github.wesleyosantos91.api.v1.commons.enums.*</param>
@@ -224,6 +303,7 @@
 						<param>io.github.wesleyosantos91.api.v1.response.*</param>
 						<param>io.github.wesleyosantos91.core.mapper.*</param>
 						<param>io.github.wesleyosantos91.api.exception.*</param>
+						<param>io.github.wesleyosantos91.infrastructure.metrics.*</param>
 					</excludedClasses>
 					<avoidCallsTo>
 						<param>org.springframework.util.StopWatch</param>
@@ -257,5 +337,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

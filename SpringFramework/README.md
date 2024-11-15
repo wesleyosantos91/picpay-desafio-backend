@@ -47,18 +47,20 @@
 - **Mysql**
 
 ## Aplicações
+
+### app-transaction-api
 | Nome                | Descrição |
 |---------------------|-------|
 | app-transaction-api | Esse microserviço tem a reposnsabilidade de tratar todo core do contexto de transferencia. |
 
-## Portas
+#### Portas
 | Aplicação          | Porta |
 |--------------------|-------|
 | app-transaction-api| 8080  |
 
-## Setup
+#### Setup
 
-- ### Variáveis de ambiente
+- ##### Variáveis de ambiente
 
 | Variável de Ambiente  | Descrição                                                                      |
 |-----------------------|--------------------------------------------------------------------------------|
@@ -66,6 +68,21 @@
 | `DATABASE_PORT`          | Especifique a porta do banco de dados `MySQL` a ser usada (padrão `3306` )     |
 | `DATABASE_USERNAME`         | Especifique o user do `MySQL` a ser usado (padrão `app` )                |
 | `DATABASE_PASSWORD`         | Especifique a password do `MySQL` a ser usado (padrão `app` )                  |
+
+- ##### Testes Unitários
+  ```
+  ./mvnw test
+  ```
+
+- ##### Testes Integração
+  ```
+  ./mvnw verify -Dskip.ut=true -Dskip.it=false
+  ```
+
+- ##### Testes Mutação
+  ```
+  ./mvnw clean test-compile org.pitest:pitest-maven:mutationCoverage
+  ```
 
 </br>
 <a href="https://www.linkedin.com/in/wesleyosantos91/" target="_blank">
