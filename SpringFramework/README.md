@@ -64,10 +64,13 @@
 
 | Variável de Ambiente  | Descrição                                                                      |
 |-----------------------|--------------------------------------------------------------------------------|
-| `DATABASE_HOST`          | Especifique o host do banco de dados `MySQL` a ser usado (padrão `localhost` ) |
-| `DATABASE_PORT`          | Especifique a porta do banco de dados `MySQL` a ser usada (padrão `3306` )     |
-| `DATABASE_USERNAME`         | Especifique o user do `MySQL` a ser usado (padrão `app` )                |
-| `DATABASE_PASSWORD`         | Especifique a password do `MySQL` a ser usado (padrão `app` )                  |
+| `DATABASE_HOST`       | Especifique o host do banco de dados `MySQL` a ser usado (padrão `localhost` ) |
+| `DATABASE_PORT`       | Especifique a porta do banco de dados `MySQL` a ser usada (padrão `3306` )     |
+| `DATABASE_USERNAME`   | Especifique o user do `MySQL` a ser usado (padrão `app` )                      |
+| `DATABASE_PASSWORD`   | Especifique a password do `MySQL` a ser usado (padrão `app` )                  |
+| `DATADOG_API_KEY`     | Especifique o api key do `DATADOG`  a ser usado (obtido no portal do datadog)  |
+| `DATADOG_APP_KEY`     | Especifique o app key do `DATADOG`  a ser usado (obtido no portal do datadog)  |
+| `DATADOG_URI`         | Especifique o uri do `DATADOG`  a ser usado (obtido no portal do datadog)      |
 
 - ##### Testes Unitários
   ```
