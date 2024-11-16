@@ -38,6 +38,7 @@
 - [ `Apache Maven`](https://maven.apache.org/download.cgi)
 - [ `Docker` ](https://www.docker.com/)
 - [ `Docker-Compose` ](https://docs.docker.com/compose/install/)
+- [ `Grafana k6` ](https://grafana.com/docs/k6/latest/set-up/install-k6/)
 
 ## Stack Utilizada
 - **Java 21**
@@ -45,6 +46,8 @@
 - **Spring Data**
 - **Flyway**
 - **Mysql**
+- **Datadog**
+- **Grafana k6 (Load testing for engineering teams)**
 
 ## Aplicações
 
@@ -72,19 +75,34 @@
 | `DATADOG_APP_KEY`     | Especifique o app key do `DATADOG`  a ser usado (obtido no portal do datadog)  |
 | `DATADOG_URI`         | Especifique o uri do `DATADOG`  a ser usado (obtido no portal do datadog)      |
 
-- ##### Testes Unitários
+- ##### Teste de Unitários
   ```
   ./mvnw test
   ```
 
-- ##### Testes Integração
+- ##### Teste de Integração
   ```
   ./mvnw verify -Dskip.ut=true -Dskip.it=false
   ```
 
-- ##### Testes Mutação
+- ##### Teste de Mutação
   ```
   ./mvnw clean test-compile org.pitest:pitest-maven:mutationCoverage
+  ```
+
+- ##### Teste de Smock
+  ```
+  K6_WEB_DASHBOARD=true K6_WEB_DASHBORAD_EXPORT=report.hml k6 run -e BASE_URL=http://localhost:8080 src/main/resources/k6/smock-testing/test_api_users_get_paginated_smock.js
+  ```
+
+- ##### Teste de Performance
+  ```
+  K6_WEB_DASHBOARD=true K6_WEB_DASHBORAD_EXPORT=report.hml k6 run -e BASE_URL=http://localhost:8080 src/main/resources/k6/load-testing/test_api_users_get_paginated_permormance.js
+  ```
+
+- ##### Teste de Stress
+  ```
+  K6_WEB_DASHBOARD=true K6_WEB_DASHBORAD_EXPORT=report.hml k6 run -e BASE_URL=http://localhost:8080 src/main/resources/k6/stress-testing/test_api_users_get_paginated_stress.js
   ```
 
 </br>
