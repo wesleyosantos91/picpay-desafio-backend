@@ -1,5 +1,6 @@
 package io.github.wesleyosantos91.api.exception;
 
+import io.github.wesleyosantos91.api.v1.response.CustomProblemDetail;
 import io.github.wesleyosantos91.api.v1.response.ErrorResponse;
 import io.github.wesleyosantos91.domain.exception.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
@@ -34,6 +36,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         this.messageSource = messageSource;
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers,
@@ -44,12 +47,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 .map(fieldError -> new ErrorResponse(fieldError.getField(), messageSource.getMessage(fieldError, LocaleContextHolder.getLocale())))
                 .toList();
 
-        final ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "The following errors occurred:");
-        problemDetail.setType(URI.create("about:blank"));
-        problemDetail.setTitle("Validation failed");
-        problemDetail.setStatus(HttpStatus.BAD_REQUEST.value());
-        problemDetail.setProperty(TIMESTAMP, Instant.now());
-        problemDetail.setProperty("errors", errors);
+        final CustomProblemDetail problemDetail =
+                new CustomProblemDetail(HttpStatus.BAD_REQUEST,"Validation failed", "The following errors occurred:", errors);
         final HttpServletRequest httpServletRequest = ((ServletWebRequest) request).getRequest();
         ServerHttpObservationFilter.findObservationContext(httpServletRequest).ifPresent(context -> context.setError(ex));
 
@@ -58,6 +57,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return super.handleExceptionInternal(ex, problemDetail, headers, status, request);
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
     private ResponseEntity<ProblemDetail> handleResourceNotFoundException(HttpServletRequest request, ResourceNotFoundException ex) {
 

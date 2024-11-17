@@ -1,6 +1,13 @@
-#server:
-#  tomcat:
-#    max-connections: 1000
+server:
+  address: localhost
+  port: 8080
+  ssl:
+    enabled: false
+springdoc:
+  show-actuator: false
+  swagger-ui:
+    groups-order: desc
+    disable-swagger-default-url: true
 spring:
   application:
     name: app-transation-api

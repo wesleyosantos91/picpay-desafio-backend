@@ -2,9 +2,10 @@ package io.github.wesleyosantos91.api.v1.controller;
 
 import static io.github.wesleyosantos91.core.mapper.UserMapper.MAPPER;
 
+import io.github.wesleyosantos91.api.v1.openapi.UserOpenApi;
 import io.github.wesleyosantos91.api.v1.request.UserQueryRequest;
 import io.github.wesleyosantos91.api.v1.request.UserRequest;
-import io.github.wesleyosantos91.api.v1.response.UserRespose;
+import io.github.wesleyosantos91.api.v1.response.UserResponse;
 import io.github.wesleyosantos91.core.validation.Groups;
 import io.github.wesleyosantos91.domain.exception.ResourceNotFoundException;
 import io.github.wesleyosantos91.domain.service.UserService;
@@ -31,14 +32,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/users")
-public record UserController(UserService service) {
+public record UserController(UserService service) implements UserOpenApi {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-    public static final String REGEX_UUID = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$";
 
     @PostMapping
-    public ResponseEntity<UserRespose> create(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
-                                              @Validated(Groups.Create.class) @RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> create(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
+                                               @Validated(Groups.Create.class) @RequestBody UserRequest request) {
         final StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         LOGGER.debug("Function started 'create user'");
@@ -49,8 +49,8 @@ public record UserController(UserService service) {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserRespose> getById(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
-                                               @PathVariable UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<UserResponse> getById(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
+                                                @PathVariable UUID id) throws ResourceNotFoundException {
         final StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         LOGGER.debug("Function started 'getById user' with id {}", id);
@@ -62,8 +62,8 @@ public record UserController(UserService service) {
     }
 
     @GetMapping
-    public ResponseEntity<PagedModel<UserRespose>> search(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
-                                                          @ModelAttribute UserQueryRequest query, Pageable page) {
+    public ResponseEntity<PagedModel<UserResponse>> search(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
+                                                           @ModelAttribute UserQueryRequest query, Pageable page) {
         final StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         LOGGER.info("Function started 'find user'");
@@ -75,9 +75,9 @@ public record UserController(UserService service) {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserRespose> update(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
-                                              @PathVariable UUID id,
-                                              @Validated(Groups.Update.class)
+    public ResponseEntity<UserResponse> update(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
+                                               @PathVariable UUID id,
+                                               @Validated(Groups.Update.class)
                                               @RequestBody UserRequest request) throws ResourceNotFoundException {
         final StopWatch stopWatch = new StopWatch();
         stopWatch.start();
