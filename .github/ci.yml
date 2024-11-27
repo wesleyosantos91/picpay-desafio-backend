@@ -45,7 +45,7 @@ jobs:
           cd SpringFramework/app-transaction-api
           mvn test
 
-      # 5. Executar testes de integração
+      # 6. Executar testes de integração
       - name: Run Integration Tests
         run: |
           cd SpringFramework/app-transaction-api
