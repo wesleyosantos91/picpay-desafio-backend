@@ -1,8 +1,8 @@
 package io.github.wesleyosantos91.api.v1.controller;
 
+import static io.github.wesleyosantos91.api.v1.openapi.UserOpenApi.REGEX_UUID;
 import static io.github.wesleyosantos91.core.mapper.UserMapper.MAPPER;
 
-import io.github.wesleyosantos91.api.v1.openapi.UserOpenApi;
 import io.github.wesleyosantos91.api.v1.request.UserQueryRequest;
 import io.github.wesleyosantos91.api.v1.request.UserRequest;
 import io.github.wesleyosantos91.api.v1.response.UserResponse;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/users")
-public record UserController(UserService service) implements UserOpenApi {
+public record UserController(UserService service) {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 

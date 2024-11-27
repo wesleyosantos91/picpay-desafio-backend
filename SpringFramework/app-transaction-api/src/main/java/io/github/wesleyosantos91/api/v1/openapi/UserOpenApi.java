@@ -4,6 +4,7 @@ import io.github.wesleyosantos91.api.v1.request.UserQueryRequest;
 import io.github.wesleyosantos91.api.v1.request.UserRequest;
 import io.github.wesleyosantos91.api.v1.response.CustomProblemDetail;
 import io.github.wesleyosantos91.api.v1.response.UserResponse;
+import io.github.wesleyosantos91.core.validation.Groups;
 import io.github.wesleyosantos91.domain.exception.ResourceNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,12 +15,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Pattern;
 import java.util.UUID;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @Tag(name = "User", description = "API for managing users")
 public interface UserOpenApi {
@@ -50,12 +52,14 @@ public interface UserOpenApi {
                     )
             }
     )
-    ResponseEntity<UserResponse> create(String correlationId,
+    ResponseEntity<UserResponse> create(@RequestHeader("x-correlationID") @Pattern(regexp = REGEX_UUID) String correlationId,
                                         @RequestBody(
                                                 description = "Representation of the new user to be registered",
                                                 required = true,
-                                                content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserRequest.class))
-                                        ) UserRequest request);
+                                                content = @Content(mediaType = "application/json",
+                                                schema = @Schema(implementation = UserRequest.class))
+                                        )
+                                        @Validated(Groups.Create.class) @org.springframework.web.bind.annotation.RequestBody UserRequest request);
 
     @Operation(
             summary = "Find user by ID",
@@ -106,7 +110,8 @@ public interface UserOpenApi {
                                     )
                             },
                             description = "User successfully registered",
-                            content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PagedModel.class)))
+                            content = @Content(mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = PagedModel.class)))
                     )
             }
     )
@@ -158,7 +163,8 @@ public interface UserOpenApi {
                                         @RequestBody(
                                                 description = "Representation of the user to be updated",
                                                 required = true,
-                                                content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserRequest.class))
+                                                content = @Content(mediaType = "application/json",
+                                                        schema = @Schema(implementation = UserRequest.class))
                                         ) UserRequest request) throws ResourceNotFoundException;
 
     @Operation(

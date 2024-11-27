@@ -6,6 +6,11 @@
 
 <div align="center">
 
+![](https://img.shields.io/badge/Status-Em%20Desenvolvimento-orange)
+</div>
+
+<div align="center">
+
 ![](https://img.shields.io/badge/Autor-Wesley%20Oliveira%20Santos-brightgreen)
 ![](https://img.shields.io/badge/Language-java-brightgreen)
 ![](https://img.shields.io/badge/Framework-springboot-brightgreen)
@@ -44,6 +49,7 @@
 - **Java 21**
 - **Spring Boot 3**
 - **Spring Data**
+- **Spring Docs**
 - **Flyway**
 - **Mysql**
 - **Datadog**
@@ -74,6 +80,12 @@
 | `DATADOG_API_KEY`     | Especifique o api key do `DATADOG`  a ser usado (obtido no portal do datadog)  |
 | `DATADOG_APP_KEY`     | Especifique o app key do `DATADOG`  a ser usado (obtido no portal do datadog)  |
 | `DATADOG_URI`         | Especifique o uri do `DATADOG`  a ser usado (obtido no portal do datadog)      |
+
+#### Links Úteis: Ferramentas e Plataformas
+
+- OpenAPI 
+  - http://localhost:8080/swagger-ui/index.html#/
+#### Automação de Testes
 
 - ##### Teste de Unitários
   ```

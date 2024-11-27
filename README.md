@@ -6,6 +6,11 @@
 
 <div align="center">
 
+![](https://img.shields.io/badge/Status-Em%20Desenvolvimento-orange)
+</div>
+
+<div align="center">
+
 ![](https://img.shields.io/badge/Autor-Wesley%20Oliveira%20Santos-brightgreen)
 ![](https://img.shields.io/badge/Language-java-brightgreen)
 

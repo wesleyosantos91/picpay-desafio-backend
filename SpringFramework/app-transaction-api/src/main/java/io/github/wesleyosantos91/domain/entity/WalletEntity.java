@@ -10,14 +10,12 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
-import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "tb_wallet")
 public class WalletEntity {
 
     @Id
-    @ColumnDefault("(uuid_to_bin(uuid()))")
     @Column(name = "id", nullable = false, length = 16)
     private UUID id;
 
@@ -25,11 +23,9 @@ public class WalletEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    @ColumnDefault("0.00")
     @Column(name = "balance", nullable = false, precision = 10, scale = 2)
     private BigDecimal balance;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "creation_date")
     private Instant creationDate;
 

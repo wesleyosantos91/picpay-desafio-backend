@@ -3,11 +3,9 @@ package io.github.wesleyosantos91.infrastructure.springdoc;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import io.github.wesleyosantos91.api.v1.response.CustomProblemDetail;
-import io.github.wesleyosantos91.api.v1.response.ErrorResponse;
 import io.swagger.v3.core.converter.ModelConverters;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
@@ -23,7 +21,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpStatus;
 
 @Profile("local")
 @Configuration
