@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/SpringFramework/app-transaction-api"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore: "
+      include: "scope"
