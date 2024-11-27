@@ -17,26 +17,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Configuração do JDK
+      # 2. Configuração do cache do Maven
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # 3. Configuração do JDK
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '21'
 
-      # 3. Build do projeto
+      # 4. Build do projeto
       - name: Build
         run: |
           cd SpringFramework/app-transaction-api
           mvn clean install -Dskip.ut=true -Dskip.it=true
 
-      # 4. Executar testes unitários
+      # 5. Executar testes unitários
       - name: Run Unit Tests
         run: |
           cd SpringFramework/app-transaction-api
           mvn test
 
-      # 5. Executar testes de integração
+      # 6. Executar testes de integração
       - name: Run Integration Tests
         run: |
           cd SpringFramework/app-transaction-api
