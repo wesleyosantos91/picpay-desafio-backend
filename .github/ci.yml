@@ -1,4 +1,4 @@
-name: Java CI Pipeline
+name: Java CI Pipeline - SpringFramework
 
 on:
   push:
@@ -26,12 +26,18 @@ jobs:
 
       # 3. Build do projeto
       - name: Build
-        run: mvn clean install -Dskip.ut=true -Dskip.it=true
+        run: |
+          cd SpringFramework/app-transaction-api
+          mvn clean install -Dskip.ut=true -Dskip.it=true
 
       # 4. Executar testes unitários
       - name: Run Unit Tests
-        run: mvn test
+        run: |
+          cd SpringFramework/app-transaction-api
+          mvn test
 
       # 5. Executar testes de integração
       - name: Run Integration Tests
-        run: mvn verify -Dskip.ut=true -Dskip.it=false
+        run: |
+          cd SpringFramework/app-transaction-api
+          mvn verify -Dskip.ut=true -Dskip.it=false
